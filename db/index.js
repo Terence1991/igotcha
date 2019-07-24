@@ -1,8 +1,14 @@
-const MongoClient = require('mongodb').MongoClient;
-const url = 'mongodb://localhost/comments';
+var MongoClient = require('mongodb').MongoClient;
+var url = 'mongodb://localhost/EmployeeDB';
 
-MongoClient.connect(url, (err, db) => {
-  console.log('database connected')
+MongoClient.connect(url, function(err, db) {
 
-  db.close()
-})
+    var cursor = db.collection('Employee').find();
+
+    cursor.each(function(err, doc) {
+
+        console.log(doc);
+
+    });
+});
+

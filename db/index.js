@@ -1,4 +1,4 @@
-const MongoClient = require('mongodb').Mon;
+const MongoClient = require('mongodb').MongoClient;
 const url = 'mongodb://localhost/comments';
 
 MongoClient.connect(url, (err, db) => {

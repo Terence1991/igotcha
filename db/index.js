@@ -1,14 +1,17 @@
-var MongoClient = require('mongodb').MongoClient;
-var url = 'mongodb://localhost/EmployeeDB';
+"use strict";
 
-MongoClient.connect(url, function(err, db) {
+const PORT = 3000
+const MongoClient = require("mongodb").MongoClient;
+const MONGODB_URI =  `localhost:${PORT}`;
 
-    var cursor = db.collection('Employee').find();
+MongoClient.connect(MONGODB_URI, (err, db) => {
+  if (err) {
+    console.error(`Failed to connect: ${MONGODB_URI}`);
+    throw err;
+  }
 
-    cursor.each(function(err, doc) {
-
-        console.log(doc);
-
-    });
+  // ==> We have a connection to the "comments" db,
+  //     starting here.
+  console.log(`Connected to mongodb: ${MONGODB_URI}`);
+  db.close();
 });
-
